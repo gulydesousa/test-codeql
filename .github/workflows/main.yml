@@ -26,4 +26,4 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         queries: '.github/codeql/iva-asignment.ql'
-        token: ${{ secrets.MY_CODEQL_TOKEN }}
+        token: ${{ secrets.MYQLTOKEN }}
