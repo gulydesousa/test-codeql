@@ -19,6 +19,12 @@
         public string Notas { get; set; } = string.Empty;
 
 
+        private decimal iva()
+        {
+            return this.IVA;
+        }
+
+
 
         public static List<FacturaHeader> DeserializarFacturas(string jsonData)
         {
