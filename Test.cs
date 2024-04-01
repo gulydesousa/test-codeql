@@ -7,16 +7,16 @@
 
     public class FacturaHeader
     {
-        public string ID { get; set; }
+        public string ID { get; set; }= string.Empty;
         public DateTime Fecha { get; set; }
-        public string ClienteID { get; set; }
-        public string Detalles { get; set; }
+        public string ClienteID { get; set; } = string.Empty;
+        public string Detalles { get; set; } = string.Empty;
         public decimal TotalSinIVA { get; set; }
         public decimal IVA { get; set; }
         public decimal TotalConIVA { get; set; }
-        public string Moneda { get; set; }
-        public string Estado { get; set; }
-        public string Notas { get; set; }
+        public string Moneda { get; set; } = string.Empty;
+        public string Estado { get; set; } = string.Empty;
+        public string Notas { get; set; } = string.Empty;
 
 
 
