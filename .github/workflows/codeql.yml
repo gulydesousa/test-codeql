@@ -43,12 +43,16 @@ jobs:
       with:
         # Opcionalmente, puedes especificar la ubicación de salida del archivo SARIF
         output: sarif-result/codeql-results.sarif
-    - name: Emit warnings for CodeQL findings
+
+    - name: Check if SARIF file exists
+      id: check_sarif
       run: |
-        SARIF_FILE="sarif-result/codeql-results.sarif" # Actualiza con la ubicación real de tu archivo SARIF
-          # Asegúrate de que jq está instalado o instálalo
-          sudo apt-get install jq
-          # Extrae y muestra advertencias para cada coincidencia
-          jq -r '.runs[].results[] | "\(.ruleId) \(.message.text)"' $SARIF_FILE | while read -r line; do
-            echo "::warning file=$(jq -r '.locations[0].physicalLocation.artifactLocation.uri' <<< "$line"),line=$(jq -r '.locations[0].physicalLocation.region.startLine' <<< "$line")::$(jq -r '.message.text' <<< "$line")"
-          done
+        if [ -f sarif-result/codeql-results.sarif ]; then
+            echo "SARIF file exists."
+            echo "::set-output name=sarif_exists::true"
+        else
+            echo "SARIF file does not exist."
+            echo "::set-output name=sarif_exists::false"
+        fi
+      shell: bash
+      
