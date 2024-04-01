@@ -33,26 +33,12 @@ jobs:
       run: dotnet build --no-restore -c Release
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
+      uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
         queries: +./mi-codeql/csharp-queries.qls # Añade la ruta a tu suite de consulta personalizada
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+      uses: github/codeql-action/analyze@v3
       with:
-        # Opcionalmente, puedes especificar la ubicación de salida del archivo SARIF
-        output: sarif-result/codeql-results.sarif
-
-    - name: Check if SARIF file exists
-      id: check_sarif
-      run: |
-        if [ -f sarif-result/codeql-results.sarif ]; then
-            echo "SARIF file exists."
-            echo "::set-output name=sarif_exists::true"
-        else
-            echo "SARIF file does not exist."
-            echo "::set-output name=sarif_exists::false"
-        fi
-      shell: bash
-      
+        category: "my_category"
