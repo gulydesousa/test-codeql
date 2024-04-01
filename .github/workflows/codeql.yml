@@ -36,6 +36,7 @@ jobs:
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
+        queries: +./mi-codeql/csharp-queries.qls # Añade la ruta a tu suite de consulta personalizada
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
