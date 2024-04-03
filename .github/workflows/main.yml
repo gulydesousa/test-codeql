@@ -21,7 +21,10 @@ jobs:
     - name: Build
       run: |
         dotnet build ./test-codeql.sln
-    
+
+    - name: List results directory
+      run: ls -la ./results
+  
     - name: Check if SARIF file exists
       run: |
         if [ -f "./results/csharp.sarif" ]; then
