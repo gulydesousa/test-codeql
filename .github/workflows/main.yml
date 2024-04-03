@@ -22,17 +22,22 @@ jobs:
       run: |
         dotnet build ./test-codeql.sln
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
       with:
-       token: ${{ secrets.MITOKEN }}
-       queries: .github/codeql/iva-asignment.ql
-       output: ../results
-       upload: always
-       cleanup-level: brutal
-       add-snippets: false
-       skip-queries: false
-       checkout_path: /home/runner/work/test-codeql/test-codeql
-       upload-database: true
-       wait-for-processing: true
-       expect-error: false
+        languages: 'csharp'
+        queries: '.github/codeql/iva-asignment.ql'
+
+    - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          token: ${{ secrets.MYTOKEN }}
+          output: ../results
+          upload: always
+          cleanup-level: brutal
+          add-snippets: false
+          skip-queries: false
+          checkout_path: /home/runner/work/test-codeql/test-codeql
+          upload-database: true
+          wait-for-processing: true
+          expect-error: false
