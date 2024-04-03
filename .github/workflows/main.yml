@@ -3,6 +3,9 @@ name: "MyCodeQL"
 on:
   workflow_dispatch:
 
+permissions:
+  security-events: write
+
 jobs:
   analyze:
     name: Analyze
