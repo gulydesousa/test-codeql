@@ -25,5 +25,14 @@ jobs:
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
       with:
-        queries: '.github/codeql/iva-asignment.ql'
-        token: ${{ secrets.MYTOKEN }}
+       token: ${{ secrets.MYTOKEN }}
+       queries: .github/codeql/iva-asignment.ql
+       output: ../results
+       upload: always
+       cleanup-level: brutal
+       add-snippets: false
+       skip-queries: false
+       checkout_path: /home/runner/work/test-codeql/test-codeql
+       upload-database: true
+       wait-for-processing: true
+       expect-error: false
