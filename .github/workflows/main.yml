@@ -22,10 +22,19 @@ jobs:
       run: |
         dotnet build ./test-codeql.sln
     
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
+    - name: Check if SARIF file exists
+      run: |
+        if [ -f "./results/csharp.sarif" ]; then
+          echo "SARIF file exists."
+        else
+          echo "SARIF file does not exist."
+          exit 1
+        fi
+
+    - name: Upload results
+      uses: github/codeql-action/upload-sarif@v2
       with:
-        token: ${{ secrets.MITOKEN }}
+        token: ${{ secrets.MYTOKEN }}
         upload: always
         cleanup-level: brutal
         add-snippets: false
