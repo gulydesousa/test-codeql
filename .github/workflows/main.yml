@@ -22,14 +22,4 @@ jobs:
       run: |
         dotnet build ./test-codeql.sln
     
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-      with:
-        token: ${{ secrets.MYTOKEN }}
-        upload: always
-        cleanup-level: brutal
-        add-snippets: false
-        skip-queries: false
-        upload-database: true
-        wait-for-processing: true
-        expect-error: false
+
