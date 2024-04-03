@@ -23,7 +23,7 @@ jobs:
         dotnet build ./test-codeql.sln
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
+      uses: github/codeql-action/init@v2
       with:
         languages: 'csharp'
         queries: '.github/codeql/iva-asignment.ql'
