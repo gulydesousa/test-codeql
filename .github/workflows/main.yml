@@ -32,12 +32,10 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         token: ${{ secrets.MYTOKEN }}
-        output: ../results
         upload: always
         cleanup-level: brutal
         add-snippets: false
         skip-queries: false
-        checkout_path: /home/runner/work/test-codeql/test-codeql
         upload-database: true
         wait-for-processing: true
         expect-error: false
