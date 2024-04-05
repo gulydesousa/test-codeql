@@ -1,4 +1,4 @@
-import csharp
+/*import csharp
 
 // Clase para identificar las asignaciones a la propiedad "IVA"
 class IVAPropertyAssignment extends AssignExpr {
@@ -24,3 +24,7 @@ class TypeFactura extends RefType {
 
 from IVAPropertyAssignment apa
 select apa, apa.getLValue(), apa.getRValue()
+*/
+
+from Method m
+select m, "This is a method."
