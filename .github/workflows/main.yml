@@ -32,12 +32,14 @@ jobs:
         languages: 'csharp'
         queries: './my-codeql/queries/iva-asignment.ql'
         output: '../results'
-
-    - name: Install jq
-      run: sudo apt-get install jq
-    - name: Display alerts
-      run: |
-        jq '.runs[0].results[] | {ruleId: .ruleId, message: .message.text, location: .locations[0].physicalLocation.artifactLocation.uri}' ../results/csharp.sarif      
+    
+    - name: Display SARIF file
+      run: cat ../results/csharp.sarif
+   # - name: Install jq
+   #   run: sudo apt-get install jq
+   # - name: Display alerts
+   #   run: |
+   #     jq '.runs[0].results[] | {ruleId: .ruleId, message: .message.text, location: .locations[0].physicalLocation.artifactLocation.uri}' ../results/csharp.sarif      
   
     #- name: Fail if any alerts were found
     #  run: |
