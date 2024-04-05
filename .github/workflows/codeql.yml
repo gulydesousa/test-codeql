@@ -23,3 +23,13 @@ jobs:
       # allows us to run init a second time
       run: |
         rm -rf "$RUNNER_TEMP/codeql_databases"
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: csharp
+        config-file: ./.github/codeql/codeql-config.yml
+      
+    - name: Build
+      run: |
+        dotnet build ./test-codeql.sln   
