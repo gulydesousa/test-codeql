@@ -27,7 +27,7 @@ jobs:
         config: |
           disable-default-queries: true
           queries:
-          - uses: ./my-queries  
+          - uses: ./my-queries/test.ql
         #config-file: ./.github/codeql/config-ql.yml
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
