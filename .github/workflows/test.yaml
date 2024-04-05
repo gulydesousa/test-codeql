@@ -19,8 +19,8 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: 'csharp'
-        queries: './my-codeql/queries'
-        disable-default-queries: true
+        queries: gulydesousa/test-codeql/tree/master/my-codeql/queries
+
 
     - name: Build
       run: |
