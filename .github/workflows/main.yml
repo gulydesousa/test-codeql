@@ -31,7 +31,15 @@ jobs:
       with:
         languages: 'csharp'
         queries: './my-codeql/queries/iva-asignment.ql'
-      
+        output: '../results'
+
+    - name: Fail if any alerts were found
+      run: |
+        if grep -q "\"results\"" ../results/csharp.sarif; then
+          echo "CodeQL found alerts"
+          exit 1
+        fi
+    
     - name: List results directory
       run: ls -la /home/runner/work/test-codeql/results/csharp.sarif
   
