@@ -1,0 +1,30 @@
+name: "CoderDave CodeQL config"
+
+disable-default-queries: true
+
+# packs:
+#   - codeql/csharp-solorigate-queries
+#   - other/pack@1.2.3
+  
+#packs:
+#  javascript:
+#    - scope/some-pack
+#    - anotother/pack@1.2.3
+#  csharp:
+#    - codeql/csharp-solorigate-queries
+  
+queries:
+  - name: Run queries in the my-queries directory on the local repo
+    uses: ./my-queries
+#  - name: Run queries from an external repo
+#    uses: octo-org/javascript-qlpack@main
+#  - name: Run a single query from an external QL pack
+#    uses: octo-org/python-qlpack/show_ifs.ql@main
+#  - name: Run queries from a query suite in this repo
+#    uses: ./codeql-qlpacks/complex-python-qlpack/rootAndBar.qls
+
+#paths:
+#  - src 
+#paths-ignore: 
+#  - src/node_modules
+#  - '**/*.test.js'
