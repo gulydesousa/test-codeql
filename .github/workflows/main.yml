@@ -10,29 +10,45 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-    
-    strategy:
-      fail-fast: false
-      matrix:
-        # Override automatic language detection by changing the below list
-        # Supported options are ['csharp', 'cpp', 'go', 'java', 'javascript', 'python']
-        language: ['csharp']
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Initialize CodeQL tools for scanning
+    - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-        languages: ${{ matrix.language }}
+        languages: 'csharp'
         queries: './my-codeql/queries/iva-asignment.ql'
         disable-default-queries: true
     
-    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
-    # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v3
+    - name: Build
+      run: |
+        dotnet build ./test-codeql.sln
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
+      
+    - name: List results directory
+      run: ls -la ./results
+  
+    - name: Check if SARIF (Static Analisys Results Interchange Format) file exists
+      run: |
+        if [ -f "./results/csharp.sarif" ]; then
+          echo "SARIF file exists."
+        else
+          echo "SARIF file does not exist."
+          exit 1
+        fi
+
+    - name: Upload results
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        upload: always
+        cleanup-level: brutal
+        add-snippets: false
+        skip-queries: false
+        upload-database: true
+        wait-for-processing: true
+        expect-error: false
