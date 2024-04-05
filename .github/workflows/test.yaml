@@ -19,7 +19,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: 'csharp'
-        queries: gulydesousa/test-codeql/tree/master/my-codeql/queries
+        queries: gulydesousa/test-codeql/blob/master/my-codeql/queries/iva-asignment.ql
 
 
     - name: Build
