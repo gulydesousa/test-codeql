@@ -42,7 +42,10 @@ jobs:
     - name: Display alerts
       run: |
         jq -r '.runs[0].results[] | "WARNING: \(.ruleId) \(.message.text) \(.locations[0].physicalLocation.artifactLocation.uri)"' ../results/csharp.sarif
-    
+
+    - name: Display static message for each result
+      run: |
+        jq -r '.runs[0].results[] | "Found a result: \(.ruleId) \(.message.text) \(.locations[0].physicalLocation.artifactLocation.uri)"' ../results/csharp.sarif
    # - name: Display alerts
    #   run: |
    #     jq '.runs[0].results[] | {ruleId: .ruleId, message: .message.text, location: .locations[0].physicalLocation.artifactLocation.uri}' ../results/csharp.sarif      
