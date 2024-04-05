@@ -19,7 +19,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: 'csharp'
-        queries: './my-codeql/queries/iva-asignment.ql'
+        queries: './test-codeql/my-codeql/queries/iva-asignment.ql'
         #disable-default-queries: true
     
     - name: Build
