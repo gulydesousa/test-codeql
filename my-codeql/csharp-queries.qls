@@ -1,4 +1,4 @@
 - description: Mi suite de consultas personalizadas para C#
-  queries:
-    - queries/iva-asignment.ql
-    
+  qlpack: codeql-csharp
+  include:
+    - 'queries/iva-asignment.ql'
