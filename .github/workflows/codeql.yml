@@ -1,0 +1,11 @@
+name: "CodeQL action"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  # Identify the CodeQL tool versions to use in the analysis job.
+  check-codeql-versions:
+    runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.compare.outputs.versions }}
