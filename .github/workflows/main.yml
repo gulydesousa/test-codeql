@@ -19,7 +19,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: 'csharp'
-        queries: './test-codeql/my-codeql/csharp-queries.qls'
+        queries: './my-codeql/csharp-queries.qls'
         #disable-default-queries: true
     
     - name: Build
