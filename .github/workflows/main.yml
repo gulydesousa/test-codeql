@@ -46,10 +46,12 @@ jobs:
       uses: github/codeql-action/upload-sarif@v3
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        upload: always
-        cleanup-level: brutal
-        add-snippets: false
-        skip-queries: false
-        upload-database: true
+        #upload: always
+        #cleanup-level: brutal
+        #add-snippets: false
+        #skip-queries: false
+        #upload-database: true
         wait-for-processing: true
-        expect-error: false
+        #expect-error: false
+        sarif_file: '/home/runner/work/test-codeql/results/csharp.sarif'    
+        category: 'upload-results-csharp'
