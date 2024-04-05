@@ -26,7 +26,7 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         languages: 'csharp'
-        queries: './my-codeql/queries/iva-asignment.ql'
+        queries: './my-codeql/queries'
         output: './results'
     
     - name: Display SARIF file
