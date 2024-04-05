@@ -1,1 +1,64 @@
+name: "Nuevo MyCodeQL"
 
+on:
+  workflow_dispatch:
+
+permissions:
+  security-events: write
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+
+    - name: Build
+      run: |
+        dotnet build ./test-codeql.sln
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        languages: 'csharp'
+        queries: './my-codeql/queries/iva-asignment.ql'
+        output: './results'
+    
+    - name: Display SARIF file
+      run: cat ./results/csharp.sarif
+      
+    - name: Install jq
+      run: sudo apt-get install jq
+
+    - name: Display alerts
+      run: |
+        jq -r '.runs[0].results[] | "WARNING: \(.ruleId) \(.message.text) \(.locations[0].physicalLocation.artifactLocation.uri)"' ./results/csharp.sarif
+
+    - name: Display static message for each result
+      run: |
+        jq -r '.runs[0].results[] | "Found a result: \(.ruleId) \(.message.text) \(.locations[0].physicalLocation.artifactLocation.uri)"' ./results/csharp.sarif
+
+    - name: List results directory
+      run: ls -la ./results/csharp.sarif
+  
+    - name: Check if SARIF (Static Analysis Results Interchange Format) file exists
+      run: |
+        if [ -f "./results/csharp.sarif" ]; then
+          echo "SARIF file exists."
+        else
+          echo "SARIF file does not exist."
+          exit 1
+        fi
+
+    - name: Upload results
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        wait-for-processing: true
+        sarif_file: './results/csharp.sarif'    
+        category: 'upload-results-csharp'
