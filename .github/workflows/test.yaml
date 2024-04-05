@@ -17,6 +17,10 @@ jobs:
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
+      with:
+        languages: 'csharp'
+        queries: './my-codeql/queries'
+        disable-default-queries: true
 
     - name: Build
       run: |
@@ -26,7 +30,6 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         languages: 'csharp'
-        queries: './my-codeql/queries'
         output: './myresults'
     
     - name: Display SARIF file
