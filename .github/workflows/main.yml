@@ -20,7 +20,7 @@ jobs:
       with:
         languages: 'csharp'
         queries: './my-codeql/queries/iva-asignment.ql'
-        disable-default-queries: true
+        #disable-default-queries: true
     
     - name: Build
       run: |
