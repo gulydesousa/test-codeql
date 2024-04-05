@@ -35,8 +35,14 @@ jobs:
     
     - name: Display SARIF file
       run: cat ../results/csharp.sarif
-   # - name: Install jq
-   #   run: sudo apt-get install jq
+      
+    - name: Install jq
+      run: sudo apt-get install jq
+
+    - name: Display alerts
+      run: |
+        jq -r '.runs[0].results[] | "\(.ruleId) \(.message.text) \(.locations[0].physicalLocation.artifactLocation.uri)"' ../results/csharp.sarif
+      
    # - name: Display alerts
    #   run: |
    #     jq '.runs[0].results[] | {ruleId: .ruleId, message: .message.text, location: .locations[0].physicalLocation.artifactLocation.uri}' ../results/csharp.sarif      
