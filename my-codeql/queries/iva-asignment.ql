@@ -26,5 +26,7 @@ from IVAPropertyAssignment apa
 select apa, apa.getLValue(), apa.getRValue()
 */
 
+
 from Method m
-select m, "This is a method."
+where m.getFile().getBaseName() = "Test.cs"
+select m, "This is a method in Test.cs."
