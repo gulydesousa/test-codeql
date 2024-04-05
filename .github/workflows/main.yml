@@ -17,9 +17,9 @@ jobs:
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
-      with:
-        languages: 'csharp'
-        queries: './my-codeql/csharp-queries.qls'
+      #with:
+        #languages: 'csharp'
+        #queries: './my-codeql/queries/iva-asignment.ql'
         #disable-default-queries: true
     
     - name: Build
@@ -28,8 +28,9 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
-      #with:
-        #queries: './my-codeql/csharp-queries.qls'
+      with:
+        languages: 'csharp'
+        queries: './my-codeql/queries/iva-asignment.ql'
       
     - name: List results directory
       run: ls -la /home/runner/work/test-codeql/results/csharp.sarif
