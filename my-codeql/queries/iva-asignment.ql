@@ -1,5 +1,5 @@
-/*import csharp
-
+import csharp
+/*
 // Clase para identificar las asignaciones a la propiedad "IVA"
 class IVAPropertyAssignment extends AssignExpr {
   IVAPropertyAssignment() {
