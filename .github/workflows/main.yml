@@ -29,8 +29,8 @@ jobs:
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       
-    #- name: List results directory
-    #  run: ls -la ./results
+    - name: List results directory
+      run: ls -la ./results
   
     - name: Check if SARIF (Static Analisys Results Interchange Format) file exists
       run: |
