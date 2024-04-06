@@ -137,6 +137,11 @@
             }
             return notas;
         }
+
+        public void MetodoEjemplo()
+        {
+            // Este bloque de código está vacío
+        }    
     }
 
 }
